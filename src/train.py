@@ -71,12 +71,23 @@ with mlflow.start_run() as run:
 
         # Register the best model
         try:
+            print(f"Attempting to register model from run {run_id}")
             model_version = mlflow.register_model(
                 f"runs:/{run_id}/model",
                 "iris-classifier"
             )
-            print(f"Registered model 'iris-classifier' version {model_version.version}")
+            print(f"Successfully registered model 'iris-classifier' version {model_version.version}")
+            
+            # Verify the model was registered
+            registered_model = mlflow.tracking.MlflowClient().get_registered_model("iris-classifier")
+            print(f"Latest version: {registered_model.latest_versions[-1].version}")
+            print(f"Total versions: {len(registered_model.latest_versions)}")
+            
         except Exception as e:
             print(f"Error registering model: {e}")
+            import traceback
+            print(traceback.format_exc())
 
 print("Training complete.")
+print(f"MLflow tracking URI: {mlflow.get_tracking_uri()}")
+print("You can view the results at http://localhost:5000")
