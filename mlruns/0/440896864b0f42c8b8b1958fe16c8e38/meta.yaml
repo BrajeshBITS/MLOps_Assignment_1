@@ -1,0 +1,14 @@
+artifact_uri: file:D:/M.Tech_BITS/Semester_3/MLOps/Assignment/MLOps_Assignment_1/mlruns/0/440896864b0f42c8b8b1958fe16c8e38/artifacts
+end_time: 1753908848574
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 440896864b0f42c8b8b1958fe16c8e38
+run_name: iris-classification-experiment
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753908838370
+status: 3
+tags: []
+user_id: Brajesh Brain Box
