@@ -1,0 +1,14 @@
+artifact_uri: file:D:/M.Tech_BITS/Semester_3/MLOps/Assignment/MLOps_Assignment_1/mlruns/0/56b1b6dc613046c49036ef0d93b0ecc1/artifacts
+end_time: 1753908204607
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 56b1b6dc613046c49036ef0d93b0ecc1
+run_name: random_forest
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1753908180420
+status: 3
+tags: []
+user_id: Brajesh Brain Box
