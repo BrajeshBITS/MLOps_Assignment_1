@@ -126,6 +126,7 @@ docker run -p 8000:8000 iris-classifier
 ```
 
 ## api
+start: ```uvicorn src.api:app --reload```
 
 For Iris Setosa (prediction: 0):
 ```{
@@ -133,7 +134,8 @@ For Iris Setosa (prediction: 0):
     "sepal_width": 3.5,
     "petal_length": 1.4,
     "petal_width": 0.2
-}```
+}
+```
 
 For Iris Versicolor (prediction: 1):
 ```{
@@ -141,7 +143,8 @@ For Iris Versicolor (prediction: 1):
     "sepal_width": 2.9,
     "petal_length": 4.3,
     "petal_width": 1.3
-}```
+}
+```
 
 For Iris Virginica (prediction: 2):
 ```{
@@ -149,7 +152,8 @@ For Iris Virginica (prediction: 2):
     "sepal_width": 3.2,
     "petal_length": 6.0,
     "petal_width": 1.8
-}```
+}
+```
 
 ## Monitoring and Logging
 
@@ -173,4 +177,4 @@ These metrics are logged in MLflow and can be viewed through the MLflow UI.
 
 ## License
 
-[Add your license information here]
+
