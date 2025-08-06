@@ -46,6 +46,13 @@ with mlflow.start_run(run_name="random_forest"):
     
     accuracy_rf = accuracy_score(y_test, y_pred_rf)
     print(f"Random Forest Accuracy: {accuracy_rf}")
+    
+    # Register the model in MLflow Model Registry
+    mlflow.sklearn.log_model(
+        rf,
+        "random_forest_model",
+        registered_model_name="iris-classifier"
+    )
 
 # Compare and print results
 print("\nModel Comparison:")

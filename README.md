@@ -125,6 +125,32 @@ docker build -t iris-classifier -f docker/Dockerfile .
 docker run -p 8000:8000 iris-classifier
 ```
 
+## api
+
+For Iris Setosa (prediction: 0):
+```{
+    "sepal_length": 5.1,
+    "sepal_width": 3.5,
+    "petal_length": 1.4,
+    "petal_width": 0.2
+}```
+
+For Iris Versicolor (prediction: 1):
+```{
+    "sepal_length": 6.4,
+    "sepal_width": 2.9,
+    "petal_length": 4.3,
+    "petal_width": 1.3
+}```
+
+For Iris Virginica (prediction: 2):
+```{
+    "sepal_length": 7.2,
+    "sepal_width": 3.2,
+    "petal_length": 6.0,
+    "petal_width": 1.8
+}```
+
 ## Monitoring and Logging
 
 The application logs are stored in `logs/app.log`. You can monitor the application's behavior and any issues that arise by checking this log file.
