@@ -106,7 +106,8 @@ The project uses MLflow for experiment tracking. You can view the tracked experi
 1. Starting the MLflow UI:
 ```bash
 mlflow ui
-```
+````
+``` mlflow ui --backend-store-uri "file:./mlruns" ```
 
 2. Opening a web browser and navigating to `http://localhost:5000`
 
