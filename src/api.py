@@ -8,7 +8,11 @@ from .predict import make_prediction
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/app.log'),
+        logging.StreamHandler()  # This will keep console output as well
+    ]
 )
 logger = logging.getLogger(__name__)
 

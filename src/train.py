@@ -6,6 +6,18 @@ from sklearn.preprocessing import LabelEncoder
 import mlflow
 import mlflow.sklearn
 from datetime import datetime
+import logging
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/app.log'),
+        logging.StreamHandler()  # This will keep console output as well
+    ]
+)
+logger = logging.getLogger(__name__)
 
 # Enable autologging
 mlflow.sklearn.autolog()
@@ -16,8 +28,12 @@ experiment_name = f"iris_classification"
 mlflow.set_experiment(experiment_name)
 
 # Load and prepare data
+logger.info("Loading training and test data...")
 train_df = pd.read_csv('data/processed/train.csv')
 test_df = pd.read_csv('data/processed/test.csv')
+
+logger.info(f"Training data shape: {train_df.shape}")
+logger.info(f"Test data shape: {test_df.shape}")
 
 X_train = train_df.drop('species', axis=1)
 y_train = train_df['species']
@@ -36,7 +52,7 @@ with mlflow.start_run(run_name="logistic_regression"):
     y_pred_lr = lr.predict(X_test)
     
     accuracy_lr = accuracy_score(y_test, y_pred_lr)
-    print(f"Logistic Regression Accuracy: {accuracy_lr}")
+    logger.info(f"Logistic Regression Accuracy: {accuracy_lr}")
 
 # Train and log Random Forest model
 with mlflow.start_run(run_name="random_forest"):
@@ -45,7 +61,7 @@ with mlflow.start_run(run_name="random_forest"):
     y_pred_rf = rf.predict(X_test)
     
     accuracy_rf = accuracy_score(y_test, y_pred_rf)
-    print(f"Random Forest Accuracy: {accuracy_rf}")
+    logger.info(f"Random Forest Accuracy: {accuracy_rf}")
     
     # Register the model in MLflow Model Registry
     mlflow.sklearn.log_model(
@@ -54,12 +70,12 @@ with mlflow.start_run(run_name="random_forest"):
         registered_model_name="iris-classifier"
     )
 
-# Compare and print results
-print("\nModel Comparison:")
-print(f"Logistic Regression Accuracy: {accuracy_lr}")
-print(f"Random Forest Accuracy: {accuracy_rf}")
-print("\nTraining complete!")
-print("\nTo view all models and metrics:")
-print("1. Run: mlflow ui")
-print("2. Open: http://localhost:5000")
-print("\nAll model runs are automatically saved in MLflow")
+# Compare and log results
+logger.info("\n=== Model Comparison ===")
+logger.info(f"Logistic Regression Accuracy: {accuracy_lr}")
+logger.info(f"Random Forest Accuracy: {accuracy_rf}")
+logger.info("Training complete!")
+logger.info("To view all models and metrics:")
+logger.info("1. Run: mlflow ui")
+logger.info("2. Open: http://localhost:5000")
+logger.info("All model runs are automatically saved in MLflow")

@@ -109,6 +109,12 @@ mlflow ui
 ````
 ``` mlflow ui --backend-store-uri "file:./mlruns" ```
 
+or 
+
+```
+mlflow ui --backend-store-uri "file:///D:/M.Tech_BITS/Semester_3/MLOps/Assignment/MLOps_Assignment_1_new/MLOps_Assignment_1/mlruns" --port 5000
+```
+
 2. Opening a web browser and navigating to `http://localhost:5000`
 
 ## Docker Support

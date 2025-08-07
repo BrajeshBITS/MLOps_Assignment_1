@@ -3,7 +3,14 @@ import pandas as pd
 import logging
 
 # Configure logging for the prediction module
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logs/app.log'),
+        logging.StreamHandler()  # This will keep console output as well
+    ]
+)
 logger = logging.getLogger(__name__)
 
 MODEL_NAME = "iris-classifier"
