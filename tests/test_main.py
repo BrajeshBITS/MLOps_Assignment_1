@@ -1,9 +1,9 @@
 # tests/test_main.py
 import pytest
 from fastapi.testclient import TestClient
-from src.api import app  
+import src.api as main  
 
-client = TestClient(app)
+client = TestClient(main.app)
 
 @pytest.fixture
 def valid_iris_data():
@@ -33,7 +33,7 @@ def test_predict_success(valid_iris_data, monkeypatch):
 def test_predict_invalid_input():
     """Test API returns 422 for invalid input (negative value)."""
     invalid_data = {
-        "sepal_length": -5.1,  # invalid: less than 0
+        "sepal_length": -5.1, 
         "sepal_width": 3.5,
         "petal_length": 1.4,
         "petal_width": 0.2
