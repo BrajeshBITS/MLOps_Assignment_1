@@ -1,7 +1,7 @@
 # tests/test_main.py
 import pytest
 from fastapi.testclient import TestClient
-from app.main import app  # adjust the import based on your project structure
+from src.api import app  
 
 client = TestClient(app)
 
