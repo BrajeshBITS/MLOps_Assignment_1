@@ -1,0 +1,10 @@
+artifact_location: file:///D:/M.Tech_BITS/Semester_3/MLOps/Assignment/MLOps_Assignment_1/mlruns/344791789645192491/models/m-fb005b2e004446b9a959797fc2aef2ed/artifacts
+creation_timestamp: 1754023052431
+experiment_id: '344791789645192491'
+last_updated_timestamp: 1754023057161
+model_id: m-fb005b2e004446b9a959797fc2aef2ed
+model_type: null
+name: model
+source_run_id: e122a50918d14f3c9e53fa17f7574c68
+status: 2
+status_message: null

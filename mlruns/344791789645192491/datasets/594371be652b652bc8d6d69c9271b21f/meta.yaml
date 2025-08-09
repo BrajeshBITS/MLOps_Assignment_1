@@ -1,0 +1,10 @@
+digest: 57cf20a9
+name: dataset
+profile: '{"num_rows": 30, "num_elements": 120}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "sepal_length", "required":
+  true}, {"type": "double", "name": "sepal_width", "required": true}, {"type": "double",
+  "name": "petal_length", "required": true}, {"type": "double", "name": "petal_width",
+  "required": true}]}'
+source: '{"tags": {"mlflow.user": "Brajesh Brain Box", "mlflow.source.name": "d:/M.Tech_BITS/Semester_3/MLOps/Assignment/MLOps_Assignment_1/src/train.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "71a5a19433644b615c0736665ceafb2356acd1f4"}}'
+source_type: code

@@ -1,3 +1,9 @@
 pandas
 numpy
 scikit-learn
+mlflow
+fastapi
+uvicorn[standard]
+python-dotenv
+pytest
+httpx

@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/M.Tech_BITS/Semester_3/MLOps/Assignment/MLOps_Assignment_1/mlruns/344791789645192491/a7636274d56e4f94befb149e8e87579a/artifacts
+deleted_time: 1754510556362
+end_time: 1754022438189
+entry_point_name: ''
+experiment_id: '344791789645192491'
+lifecycle_stage: deleted
+run_id: a7636274d56e4f94befb149e8e87579a
+run_name: logistic_regression
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754022428801
+status: 4
+tags: []
+user_id: Brajesh Brain Box
