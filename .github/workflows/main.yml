@@ -29,7 +29,9 @@ jobs:
     - name: Test with pytest
       run: |
         mkdir -p logs
-        PYTHONPATH=. pytest
+        # Create a bridge file to fix the import error in tests and run with verbose output
+        echo 'from src.api import app as main' > app.py
+        PYTHONPATH=. pytest -v
 
   build-and-push:
     needs: test-and-lint

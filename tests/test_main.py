@@ -21,10 +21,10 @@ def test_predict_success(valid_iris_data, monkeypatch):
     def mock_make_prediction(df):
         return ["setosa"]
     
-    from app import main
-    monkeypatch.setattr(main, "make_prediction", mock_make_prediction)
+    # Patch the make_prediction function where it's used in the api module
+    monkeypatch.setattr("src.api.make_prediction", mock_make_prediction)
 
-    response = client.post("/predict", json=valid_iris_data)
+    response = client.post("/predict/", json=valid_iris_data)
     assert response.status_code == 200
     assert "prediction" in response.json()
     assert response.json()["prediction"] == "setosa"
@@ -38,7 +38,7 @@ def test_predict_invalid_input():
         "petal_length": 1.4,
         "petal_width": 0.2
     }
-    response = client.post("/predict", json=invalid_data)
+    response = client.post("/predict/", json=invalid_data)
     assert response.status_code == 422
 
 
@@ -48,10 +48,9 @@ def test_predict_runtime_error(valid_iris_data, monkeypatch):
     def mock_make_prediction(df):
         raise RuntimeError("Model not available")
     
-    from app import main
-    monkeypatch.setattr(main, "make_prediction", mock_make_prediction)
+    monkeypatch.setattr("src.api.make_prediction", mock_make_prediction)
 
-    response = client.post("/predict", json=valid_iris_data)
+    response = client.post("/predict/", json=valid_iris_data)
     assert response.status_code == 503
     assert response.json()["detail"] == "Model not available"
 
@@ -62,9 +61,8 @@ def test_predict_unexpected_error(valid_iris_data, monkeypatch):
     def mock_make_prediction(df):
         raise ValueError("Some unexpected error")
     
-    from app import main
-    monkeypatch.setattr(main, "make_prediction", mock_make_prediction)
+    monkeypatch.setattr("src.api.make_prediction", mock_make_prediction)
 
-    response = client.post("/predict", json=valid_iris_data)
+    response = client.post("/predict/", json=valid_iris_data)
     assert response.status_code == 500
     assert response.json()["detail"] == "An internal error occurred."
