@@ -131,35 +131,66 @@ docker build -t iris-classifier -f docker/Dockerfile .
 docker run -p 8000:8000 iris-classifier
 ```
 
-## api
-start: ```uvicorn src.api:app --reload```
+## API Endpoints
 
-For Iris Setosa (prediction: 0):
-```{
-    "sepal_length": 5.1,
-    "sepal_width": 3.5,
-    "petal_length": 1.4,
-    "petal_width": 0.2
-}
+The application provides the following API endpoints when running with `uvicorn`.
+
+### Start the API server:
+```bash
+uvicorn src.api:app --reload
 ```
 
-For Iris Versicolor (prediction: 1):
-```{
-    "sepal_length": 6.4,
-    "sepal_width": 2.9,
-    "petal_length": 4.3,
-    "petal_width": 1.3
-}
-```
+### Predict Species
 
-For Iris Virginica (prediction: 2):
-```{
-    "sepal_length": 7.2,
-    "sepal_width": 3.2,
-    "petal_length": 6.0,
-    "petal_width": 1.8
-}
-```
+*   **Endpoint:** `/predict`
+*   **Method:** `POST`
+*   **Description:** Predicts the Iris species based on input features.
+*   **Request Body:**
+
+    For Iris Setosa (prediction: 0):
+    ```json
+    {
+        "sepal_length": 5.1,
+        "sepal_width": 3.5,
+        "petal_length": 1.4,
+        "petal_width": 0.2
+    }
+    ```
+
+    For Iris Versicolor (prediction: 1):
+    ```json
+    {
+        "sepal_length": 6.4,
+        "sepal_width": 2.9,
+        "petal_length": 4.3,
+        "petal_width": 1.3
+    }
+    ```
+
+    For Iris Virginica (prediction: 2):
+    ```json
+    {
+        "sepal_length": 7.2,
+        "sepal_width": 3.2,
+        "petal_length": 6.0,
+        "petal_width": 1.8
+    }
+    ```
+*   **Example `curl` command:**
+    ```bash
+    curl -X POST "http://127.0.0.1:8000/predict" -H "Content-Type: application/json" -d '{"sepal_length": 5.1, "sepal_width": 3.5, "petal_length": 1.4, "petal_width": 0.2}'
+    ```
+
+### Retrain Model
+
+*   **Endpoint:** `/retrain`
+*   **Method:** `POST`
+*   **Description:** Triggers the model retraining process in the background. This will retrain the models based on the current data in `data/processed/`.
+*   **Request Body:** None
+*   **Example `curl` command:**
+    ```bash
+    curl -X POST http://127.0.0.1:8000/retrain -H "Content-Length: 0"
+    ```
 
 ## Monitoring and Logging
 

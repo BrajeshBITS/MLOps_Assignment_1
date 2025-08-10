@@ -1,9 +1,12 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, BackgroundTasks
 from pydantic import BaseModel, Field
 import pandas as pd
 import logging
+import subprocess
+import sys
 
 from .predict import make_prediction
+from .train import train_model
 
 # Configure logging
 logging.basicConfig(
@@ -40,4 +43,21 @@ def predict(data: IrisData):
     except Exception as e:
         logger.error(f"An unexpected error occurred: {e}")
         raise HTTPException(status_code=500, detail="An internal error occurred.")
+
+def run_training():
+    """Function to run the training script."""
+    try:
+        train_model()
+        logger.info("Training process completed successfully.")
+    except Exception as e:
+        logger.error(f"Training process failed: {e}")
+
+@app.post("/retrain", summary="Trigger model retraining")
+def retrain(background_tasks: BackgroundTasks):
+    """
+    Triggers a model retraining process in the background.
+    """
+    logger.info("Retraining request received.")
+    background_tasks.add_task(run_training)
+    return {"message": "Model retraining has been initiated in the background."}
 
